@@ -7,6 +7,7 @@ object WordCount {
     def main(args: Array[String]): Unit = {
         require(args.length == 3, "Usage: WordCount <Master> <Input> <Output>") /* */
 
+        // SparkContext 생성
         val sc = getSparkContext("WordCount", args(0))
 
         val inputRDD = getInputRDD(sc, args(1))
