@@ -3,5 +3,5 @@ out
 src/main/java
 src/test/java
 target
-TestProject.iml
+*.iml
 spark-warehouse
