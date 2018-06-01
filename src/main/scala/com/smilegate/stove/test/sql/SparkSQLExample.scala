@@ -1,6 +1,7 @@
 package com.smilegate.stove.test.sql
 
-import org.apache.spark.sql.SparkSession
+import org.apache.spark.SparkContext
+import org.apache.spark.sql.{Row, SparkSession}
 import org.apache.spark.sql.types._
 
 object SparkSQLExample {
@@ -12,6 +13,7 @@ object SparkSQLExample {
     case class Person(name: String, age : Long)
 
     def main(args: Array[String]) {
+        val sparkContext = new SparkContext()
         // 데이터 프레임을 생성하기 위해서는 SparkSession 을 이용해야 함
         // Spark SQL 은 가장 먼저 SparkSession을 생성하는 것으로 부터 시작
         // SparkSession 은 Spark 2.0 부터 시작, SparkSession = SQLContext + HiveContext
@@ -25,8 +27,7 @@ object SparkSQLExample {
         //runBasicDataFrameExample(spark)
         //runDatasetCreationExample(spark)
         //runInferSchemaExample(spark)
-        runProgrammaticSchemaExample(spark)
-
+        //runProgrammaticSchemaExample(spark)
         spark.stop()
     }
 
@@ -192,7 +193,7 @@ object SparkSQLExample {
 
         // 텍스트 파일을 읽어와서 Person 형태 RDD를 생성한 뒤, 데이터 프레임으로 변경
         val peopleDF = spark.sparkContext
-                .textFile(_textpath)
+                .textFile(_textpath)        // 여기까지가 RDD 생성하는 코
                 .map(_.split(","))
                 .map(attributes => Person(attributes(0), attributes(1).trim.toInt))
                 .toDF()
@@ -227,10 +228,11 @@ object SparkSQLExample {
         // String 으로 스키마 인코딩
         val schemaString = "name age"
 
-        // String 형태로 선언된 것을 바탕으로 스키마를 생성
+        // String 형태로 선언된 것을 바탕으로 스키마를 생성한다.
+        // j
         val fields = schemaString.split(" ")
                 .map(fieldName => StructField(fieldName, StringType, nullable = true))
-        val schema = StringType(fields)
+        //val schema = StringType(fields)
 
     }
 }
