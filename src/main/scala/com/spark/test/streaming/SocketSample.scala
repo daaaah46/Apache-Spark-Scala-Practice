@@ -1,4 +1,4 @@
-package com.smilegate.stove.test.streaming
+package com.spark.test.streaming
 
 import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.spark.streaming.{Seconds, StreamingContext}

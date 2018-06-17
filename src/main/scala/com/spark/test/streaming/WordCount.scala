@@ -1,4 +1,4 @@
-package com.smilegate.stove.test.streaming
+package com.spark.test.streaming
 
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.streaming.OutputMode

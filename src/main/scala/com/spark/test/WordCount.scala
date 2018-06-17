@@ -1,4 +1,4 @@
-package com.smilegate.stove.test
+package com.spark.test
 
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkContext, SparkConf}
