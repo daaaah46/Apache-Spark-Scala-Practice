@@ -1,10 +1,10 @@
-package com.spark.test.sql
+package com.spark.study.sparkdoc
 
 import org.apache.spark.SparkContext
 import org.apache.spark.sql.{Row, SparkSession}
 import org.apache.spark.sql.types._
 
-object SparkSQLExample {
+object SparkSQLExamples {
 
     val _jsonpath = "src/main/resources/people.json"
     val _textpath = "src/main/resources/people.txt"
@@ -18,11 +18,11 @@ object SparkSQLExample {
         // Spark SQL 은 가장 먼저 SparkSession을 생성하는 것으로 부터 시작
         // SparkSession 은 Spark 2.0 부터 시작, SparkSession = SQLContext + HiveContext
         val spark = SparkSession
-                .builder()
-                .appName("Spark SQL basic Example")     // appName 설정
-                .config("spark.some.config.option", "some-value")       // 추가적으로 설정이 필요할 때 사용
-                .master("local[*]")
-                .getOrCreate()
+            .builder()
+            .appName("Spark SQL basic Example")     // appName 설정
+            .config("spark.some.config.option", "some-value")       // 추가적으로 설정이 필요할 때 사용
+            .master("local[*]")
+            .getOrCreate()
 
         //runBasicDataFrameExample(spark)
         //runDatasetCreationExample(spark)
@@ -193,10 +193,10 @@ object SparkSQLExample {
 
         // 텍스트 파일을 읽어와서 Person 형태 RDD를 생성한 뒤, 데이터 프레임으로 변경
         val peopleDF = spark.sparkContext
-                .textFile(_textpath)        // 여기까지가 RDD 생성하는 코
-                .map(_.split(","))
-                .map(attributes => Person(attributes(0), attributes(1).trim.toInt))
-                .toDF()
+            .textFile(_textpath)        // 여기까지가 RDD 생성하는 코
+            .map(_.split(","))
+            .map(attributes => Person(attributes(0), attributes(1).trim.toInt))
+            .toDF()
 
         // 데이터 프레임을 temporary view 로 등록
         peopleDF.createOrReplaceTempView("people")
@@ -231,8 +231,9 @@ object SparkSQLExample {
         // String 형태로 선언된 것을 바탕으로 스키마를 생성한다.
         // j
         val fields = schemaString.split(" ")
-                .map(fieldName => StructField(fieldName, StringType, nullable = true))
+            .map(fieldName => StructField(fieldName, StringType, nullable = true))
         //val schema = StringType(fields)
 
     }
 }
+

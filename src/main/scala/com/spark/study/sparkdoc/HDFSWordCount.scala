@@ -1,9 +1,9 @@
-package com.spark.test.streaming
+package com.spark.study.sparkdoc
 
 import org.apache.spark.SparkConf
 import org.apache.spark.streaming.{Seconds, StreamingContext}
 
-object HdfsWordCount {
+object HDFSWordCount {
     def main(args: Array[String]){
         if (args.length < 1){
             System.err.println("Usage : HdfsWordCount <directory>")
